@@ -6,12 +6,15 @@ class hethong_controller extends controller {
 	}
 
 	function home(){
-		// without data
-		// $this->render('home');
+		$ht_model = new hethong_model();		
+		$sliders = $ht_model->dsslider();
+		$brands = $ht_model->dsbrand();
 
-		// with data
-		$active = 'active';
-		$data = array('active'=>$active);
+		$data = array(
+			'sliders'=>$sliders,
+			'brands'=>$brands
+		);
+
 		$this->render('home',$data);
 	}
 

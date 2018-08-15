@@ -1,12 +1,12 @@
 <?php
-class database {
+class Database extends dbconfig {
 	protected $pdo = NULL;
 	protected $stmt = NULL;
 	protected $sql = '';	
 
 	function __construct(){
 		try {
-				$this->pdo = new PDO('mysql:host='.HOST.'; dbname='.DBNAME, USERNAME, PASSWORD);
+				$this->pdo = new PDO('mysql:host='.$this->HOSTNAME.'; dbname='.$this->DBNAME, $this->USERNAME, $this->PASSWORD);
 				$this->pdo->query('set names utf8');
 				$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} 
