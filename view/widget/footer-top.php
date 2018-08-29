@@ -54,8 +54,8 @@
                     <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
                     <div class="newsletter-form">
                         <form action="#">
-                            <input type="email" placeholder="Type your email">
-                            <input type="submit" value="Subscribe">
+                            <input type="email" id="subscribeEmail" placeholder="Type your email">
+                            <button type="button" class="btn btn-info" id="btn_subscribe" >Subscribe</button>
                         </form>
                     </div>
                 </div>
@@ -63,3 +63,36 @@
         </div>
     </div>
 </div> <!-- End footer top area -->
+
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).on('click','#btn_subscribe', function(){
+    alert($('#subscribeEmail').val());
+  if($('#subscribeEmail').val()){
+    $.ajax({
+        url : './controller/addSubcribe.php',
+        dataType: 'text',
+        type: 'post',
+        data : {
+          email : $('#subscribeEmail').val()
+        },
+        success : function(res){
+          data = JSON.parse(res);
+          if(data.state == 'ok'){
+            $('#btn_subscribe').val('');
+            toastr["success"]("Bạn đã subcribe thành công","info");       
+          } else {
+            toastr["warning"]("Bạn đã subcribe thất bại","warning");
+          }     
+        },
+        error : function(err){
+          toastr["warning"]("Lỗi server, xin vui lòng thử lại","warning");
+        }     
+      });
+  }  
+  
+});
+
+</script>

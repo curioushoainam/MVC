@@ -36,6 +36,12 @@ class hethong_model extends Database{
 		else 
 			return false;
 	}
+
+	function addSubcribe($email){
+		$sql = 'INSERT INTO `subscribe` (`email`, `ngay_tao`, `trang_thai`) VALUES (?, NOW(), 1)' ;
+		$this->setQuery($sql);
+		return $this->execute(array($email));
+	}
 }
 
 ?>
