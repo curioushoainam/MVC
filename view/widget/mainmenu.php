@@ -11,14 +11,23 @@
             </div> 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="<?= menu_active('home')  ?>"><a href="?controller=hethong&action=home">Home</a></li>
-                    <li class="<?= menu_active('dsSanpham') ?>"><a href="?controller=sanpham&action=dsSanpham">Shop page</a></li>
-                    <li class="<?= menu_active('chitiet') ?>"><a href="?controller=sanpham&action=chitiet">Single product</a></li>
-                    <li class="<?= menu_active('cart') ?>"><a href="?controller=donhang&action=cart">Cart</a></li>
-                    <li class="<?= menu_active('checkout') ?>"><a href="?controller=donhang&action=checkout">Checkout</a></li>
-                    <li class="<?= menu_active('dsCatalog') ?>"><a href="?controller=sanpham&action=dsCatalog">Category</a></li>
-                    <li class="<?= menu_active('about') ?>"><a href="?controller=hethong&action=about">About us</a></li>
-                    <li class="<?= menu_active('contact') ?>"><a href="?controller=hethong&action=contact">Contact</a></li>
+                    <?php
+                    foreach ($menu as $item){
+                        $active = isset($item) && $item ? $item->action : '';
+                        $link = isset($item) && $item ? $item->link : '';
+                        $ten_menu = isset($item) && $item ? $item->ten : ''; 
+
+                        $isActive = '';
+                        if(isset($_GET['action']) && $_GET['action']){
+                            if ($active == $_GET['action']){
+                                $isActive = 'active';
+                            }
+                        } 
+                    ?>
+                    <li class="<?= $isActive ?>"><a href="?<?= $link ?>"><?= $ten_menu ?></a></li>
+                    <?php 
+                    }
+                    ?>
                 </ul>
             </div>  
         </div>

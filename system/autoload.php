@@ -5,6 +5,8 @@ include "system/define/define.php";
 include "system/libs/funcs.php";
 include "system/libs/ckeditor_funcs.php";
 
+login();
+
 spl_autoload_register(function($classname){
 	// $classname : tên class khi thực hiện lệnh new để sử dụng trong hệ thống,
 	// chương trình sẽ tự động phát hiện và trả về tên ở đây.

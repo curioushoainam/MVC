@@ -1,11 +1,11 @@
 <?php 
 //echo "from ckeditor";
 // $dimenison is a array[height in px or em, width in % or px]
-function ckeditor($name, $content,$size = array('10em','100%'), $toolbar = 'standard'){
+function ckeditor($name, $content,$toolbar = 'standard',$size = array('7em','100%')){
     global $ckeditor_loaded;
     $code = '';
     if (!$ckeditor_loaded){
-        $code .= '<script type="text/javascript" src="./libs/asset/ckeditor/ckeditor.js"></script>';
+        $code .= '<script type="text/javascript" src="./system/libs/asset/ckeditor/ckeditor.js"></script>';
         $ckeditor_loaded = true;
     } 
     //$code .= '<textarea id="'. $name .'">'. htmlentities($content) .'</textarea>';
@@ -13,9 +13,7 @@ function ckeditor($name, $content,$size = array('10em','100%'), $toolbar = 'stan
     $code .= '<script type="text/javascript">';
     $code .= ' config = {};
                 config.entities_latin = false;
-                config.language = "en";
-                config.filebrowserBrowseUrl = "./libs/asset/ckfinder/ckfinder.html";
-                config.filebrowserImageBrowseUrl = "./libs/asset/ckfinder/ckfinder.html";
+                config.language = "en";                
                 config.height = "'.$size[0].'";                
                 config.width = "'.$size[1].'";
         ';
@@ -86,4 +84,9 @@ function ckeditor($name, $content,$size = array('10em','100%'), $toolbar = 'stan
     return $code;
 }
 
+?>
+
+<!-- how to use -->
+<?php
+// echo ckeditor(..., ... , ...);
 ?>

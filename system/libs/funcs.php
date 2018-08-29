@@ -6,31 +6,21 @@ function viewArr($ar){
     echo '</pre>';
 }
 
-function checklogin(){
-    require_once ('./class/Process_account.php');
-    $process_account = new Process_account();
+function login(){ 
+    require_once('./system/config/dbconfig.php');
+    require_once('./system/core/Database.php');
+    require_once('./model/hethong_model.php');
+    $ht_model = new hethong_model();   
     
-	if(isset($_COOKIE['login'], $_COOKIE['account'], $_COOKIE['password']) && $_COOKIE['login'] && $_COOKIE['account'] &&  $_COOKIE['password']){
-    	$_SESSION['login'] = $_COOKIE['login']; 
-    	$_SESSION['account'] = $_COOKIE['account'];
-    	$_SESSION['password'] = $_COOKIE['password'];
-        
-        if(isset($_COOKIE['avatar']) && $_COOKIE['avatar']){
-            $_SESSION['avatar'] = $_COOKIE['avatar'];
-        }
-        
-	}
-
-    if (isset($_SESSION['login']) && $_SESSION['login']){
-        if($process_account->isActive($_SESSION['account'])){
-            return true;
+	if(isset($_COOKIE['account'], $_COOKIE['password']) && $_COOKIE['account'] &&  $_COOKIE['password']){
+        if($ht_model->checkpassword($_COOKIE['account'], $_COOKIE['password'])){
+            $_SESSION['login'] = true;
+            $_SESSION['account'] = $_COOKIE['account'];       
         } else {
-            $_SESSION['msg'] = 'Tài khoản đã bị khóa. Vui lòng liên hệ với admin';
-            return false;
+            unset($_SESSION['account']);
+            unset($_SESSION['password']);            
         }
-        
-    } else
-        return false;
+	}
 }
 
 function checkpermission(){

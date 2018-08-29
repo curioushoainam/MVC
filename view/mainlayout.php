@@ -1,3 +1,7 @@
+<?php 
+defined('DOMAIN') or exit('Access deny');
+
+?>
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
@@ -20,12 +24,16 @@
     <link rel="stylesheet" href="<?= TEMPLATE_PATH ?>/css/bootstrap.min.css">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?= TEMPLATE_PATH ?>/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="<?= TEMPLATE_PATH ?>/css/font-awesome.min.css"> -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?= TEMPLATE_PATH ?>/css/owl.carousel.css">
     <link rel="stylesheet" href="<?= TEMPLATE_PATH ?>/css/style.css">
     <link rel="stylesheet" href="<?= TEMPLATE_PATH ?>/css/responsive.css">
+
+    <link rel="stylesheet" href="<?= DOMAIN ?>/system/libs/toastr.css">    
+    <link rel="stylesheet" href="<?= DOMAIN ?>/system/libs/style_self.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,16 +41,18 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
   </head>
   <body>
    
     <!-- header top -->
     <?php include 'view/widget/header-top.php'; ?>
     <!-- header brand -->
-   <?php include 'view/widget/header-brand.php'; ?>    
+   <?php include 'view/widget/header-brand.php'; ?>
+    
     <!-- mainmenu -->
     <?php include 'view/widget/mainmenu.php'; ?>
-
+    
     <!-- main contents // change -->
     <?php    
     include $this->pathview . $view .'.php';   
@@ -72,7 +82,35 @@
     
     <!-- Slider -->
     <script type="text/javascript" src="<?= TEMPLATE_PATH ?>/js/bxslider.min.js"></script>
-	<script type="text/javascript" src="<?= TEMPLATE_PATH ?>/js/script.slider.js"></script>    
-    
+	<script type="text/javascript" src="<?= TEMPLATE_PATH ?>/js/script.slider.js"></script>
+    <script type="text/javascript" src="<?= DOMAIN ?>/system/libs/toastr.js"></script>
+    <script type="text/javascript" src="<?= DOMAIN ?>/system/libs/self.js"></script>
+    <script>
+
+        // AJAX for pagination on shop page
+// $(document).on("click",".page", function(event){
+//     var _that = $(this);
+//     alert( 'hello');
+//     alert(_that.data('page'));
+//     event.preventDefault(); 
+//     $.ajax({
+//         url: './../controller/shop_page_controller.php',
+//         type : 'get',
+//         dataType : 'text',
+//         data :{
+//             page: _that.data('page')
+//         },
+//         success : function(response){
+//             $('#contents').html(response);
+//         },
+//         error : function(err){
+//             $('#contents').html('<p>Trang tìm kiếm không tồn tại</p>');
+//         }
+//     });
+//     return false; // for good measure    
+// });
+
+      
+    </script>
   </body>
 </html>

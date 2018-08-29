@@ -11,6 +11,31 @@ class hethong_model extends Database{
 		$this->setQuery($sql);
 		return $this->loadRows();
 	}
+
+	function menu(){
+		$sql = 'SELECT * FROM `menu` WHERE trang_thai=1' ;
+		$this->setQuery($sql);
+		return $this->loadRows();
+	}
+
+	function isAccAvail($account){
+		$sql = 'SELECT ma FROM `user` WHERE ten_dang_nhap= ? ' ;
+		$this->setQuery($sql);
+		if ($this->loadRow(array($account)))
+			return true;
+		else 
+			return false;
+	}
+
+	function checkpassword($account, $password){
+		$sql = 'SELECT password FROM `user` WHERE ten_dang_nhap= ? ' ;
+		$this->setQuery($sql);
+		$pw = $this->loadRow(array($account));
+		if ($pw)
+			return md5($password) == $pw->password;
+		else 
+			return false;
+	}
 }
 
 ?>

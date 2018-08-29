@@ -3,12 +3,15 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="user-menu">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                        <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                        <li><a href="?controller=donhang&action=cart"><i class="fa fa-user"></i> My Cart</a></li>
+                    <ul> 
+                         <?php //viewArr($_SESSION) ?>               
+                        <li><a href="#"><i class="fa fa-user"></i><?= isset($_SESSION['account']) ? $_SESSION['account'] : 'account' ?></a></li>                        
+                        <li><a href="?controller=donhang&action=cart"><i class="fa fa-cart"></i> My Cart</a></li>
                         <li><a href="?controller=donhang&action=checkout"><i class="fa fa-user"></i> Checkout</a></li>
-                        <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                        <li><a href="?controller=hethong&action=register"><i class="fa fa-user"></i> Register</a></li>
+                        <?php $isNone = isset($_SESSION['login']) && $_SESSION['login'] ? '' : 'none' ?>
+                        <li style = "display:<?= isset($_SESSION['login']) && $_SESSION['login'] ? 'none' : '' ?>"><a href="?controller=hethong&action=login"><i class="fa fa-user"></i>Login</a></li>
+                        <li style = "display:<?= isset($_SESSION['login']) && $_SESSION['login'] ? '' : 'none' ?>"><a href="#" id="logout"><i class="fa fa-user"></i>Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -39,3 +42,33 @@
         </div>
     </div>
 </div> <!-- End header area -->
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    // alert('reload');
+    $(document).on("click","#logout", function(event){       
+        event.preventDefault();
+        $.ajax({
+            url: '/MVC/view/hethong/logout.php',
+            type : 'post',
+            dataType : 'text',
+            data :{
+                logout : true
+            },
+            success : function(response){
+                alert(response);
+                window.location.reload();
+            },
+            error : function(jqXHR, textStatus, errorThrown){
+                // alert(textStatus);
+        }
+        });
+        return false;
+    });
+
+
+});
+
+
+</script>

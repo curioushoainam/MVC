@@ -9,7 +9,7 @@
             
             <div class="col-sm-6">
                 <div class="shopping-item">
-                    <a href="?controller=donhang&action=cart">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                    <a href="?controller=donhang&action=cart"><i class="fa fa-shopping-cart"></i>&nbsp&nbsp<span id="countcart" style="color: red"><?= $countcart ?></span></a>
                 </div>
             </div>
         </div>
