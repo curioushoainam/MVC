@@ -19,6 +19,22 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
 
 // AJAX for pagination on shop page
 $(document).ready(function(){
+	// Go to top
+	window.onscroll = function() {scrollFunction()};
+
+	function scrollFunction() {
+	    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	        document.getElementById("gototop").style.display = "block";
+	    } else {
+	        document.getElementById("gototop").style.display = "none";
+	    }
+	}
+	
+	$("#gototop").click(function() {
+	     $("html, body").animate({ scrollTop: 0 }, "slow");
+	     return false;
+	});
+	//  -/- Go to top
 
 	// how to use : toastr["bootstrap color"]("message","title")
 	// toastr["success"]("load successfully","info")

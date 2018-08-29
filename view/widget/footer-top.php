@@ -1,3 +1,9 @@
+<!-- Go to top -->
+<div>
+    <button type="button" class="btn btn-info" id="gototop" title="Go to top"><i class="fa fa-angle-up" aria-hidden="true"></i>
+    </button>
+</div>
+
 <!-- footer top area -->
 <div class="footer-top-area">
     <div class="zigzag-bottom"></div>
