@@ -10,12 +10,17 @@
     </div>
 </div> <!-- End Page title area -->
 
+<?php //viewArr($map) ?>
+
 <div class="single-product-area">
 	<div class="zigzag-bottom"></div>
 	<div class="container">
 		<div class="row about">
-			 <div class="col-sm-6" >
-			 	<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977" frameborder="0" style="border:0" allowfullscreen height="550" width="100%"></iframe>
+			 <div class="col-sm-6">
+			 	<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977" frameborder="0" style="border:0" allowfullscreen height="550" width="100%"></iframe> -->
+			 	
+			 	<?php echo htmlspecialchars_decode($map) ?>	
+			 				 	
 			 </div>
 			 <div class="col-sm-6">
 				<form action="" method="post">
@@ -24,23 +29,23 @@
 						<hr>
 						<div class="form-group">
 			              	<label for="">Tên liên lạc</label>
-			                <input type="text" class="form-control" required>
+			                <input type="text" class="form-control" required style="width: 100%">
 		              	</div>
 		              	<div class="form-group">
 			              	<label for="">Email</label>
-			                <input type="text" class="form-control" required>
+			                <input type="text" class="form-control" required style="width: 100%">
 		              	</div>
 		              	<div class="form-group">
 			              	<label for="">Số điện thoại</label>
-			                <input type="text" class="form-control" required>
+			                <input type="text" class="form-control" required style="width: 100%">
 		              	</div>
 		              	<div class="form-group">
 			              	<label for="">Chủ đề</label>
-			                <input type="text" class="form-control" required>
+			                <input type="text" class="form-control" required style="width: 100%">
 		              	</div>
 		              	<div class="form-group">
 			              	<label for="">Nội dung</label>
-			                <textarea name="" type="text" class="form-control" rows="5" required></textarea>
+			                <textarea name="" type="text" class="form-control" rows="5" required  style="width: 100%"></textarea>
 		              	</div>
 		             	<button class="btn btn-success">Gửi</button>
 					</fieldset>

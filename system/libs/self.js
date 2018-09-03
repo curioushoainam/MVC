@@ -157,27 +157,7 @@ $(document).on("click","#more", function(event){
 // 	document.getElementById('imglarge').src = '/First web project/admin/images/products/galaxy s8/' + key + '_1.jpg';
 // }
 
-$(document).ready(function(){
-	
-	$('#article').height(10);
-	
-});
 
-/*Article*/
-$('#xttg').click(function(event){
-	event.preventDefault();
-	var _that = $(this);
-	if(_that.data("size")==0){
-		$('#article').css('height','auto');
-		_that.html('Thu gọn');
-		_that.data("size",1);
-	} else {		
-		$('#article').height(10);
-		_that.html('Xem thêm');
-		_that.data("size",0);
-	}
-	return false;
-});
 
 
 $(document).on('click', '.addtocart', function(event){

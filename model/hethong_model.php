@@ -42,6 +42,49 @@ class hethong_model extends Database{
 		$this->setQuery($sql);
 		return $this->execute(array($email));
 	}
+
+	function footer1(){
+		$sql = 'SELECT `gia_tri` FROM `config` WHERE trang_thai=1 && `khoa`="footer1" ' ;
+		$this->setQuery($sql);
+		return $this->loadRow()->gia_tri;
+	}
+
+	function footer2(){
+		$sql = 'SELECT `gia_tri` FROM `config` WHERE trang_thai=1 && `khoa`="footer2" ' ;
+		$this->setQuery($sql);
+		return $this->loadRow()->gia_tri;
+	}
+
+	function footer3(){
+		$sql = 'SELECT `gia_tri` FROM `config` WHERE trang_thai=1 && `khoa`="footer3" ' ;
+		$this->setQuery($sql);
+		return $this->loadRow()->gia_tri;
+	}
+
+	function footer4(){
+		$sql = 'SELECT `gia_tri` FROM `config` WHERE trang_thai=1 && `khoa`="footer4" ' ;
+		$this->setQuery($sql);
+		return $this->loadRow()->gia_tri;
+	}
+
+	function aboutus(){
+		$sql = 'SELECT `gia_tri` FROM `config` WHERE trang_thai=1 && `khoa`="about" ' ;
+		$this->setQuery($sql);
+		return $this->loadRow()->gia_tri;
+	}
+
+	function generalInfo(){
+		$sql = 'SELECT `gia_tri` FROM `config` WHERE trang_thai=1 && `khoa`="generalInfo" ' ;
+		$this->setQuery($sql);
+		return $this->loadRow()->gia_tri;
+	}
+
+	function AccInfo($account){
+		$sql = 'SELECT * FROM `user` WHERE ten_dang_nhap= ? ' ;
+		$this->setQuery($sql);
+		return $this->loadRows(array($account));			
+	}
 }
+
 
 ?>

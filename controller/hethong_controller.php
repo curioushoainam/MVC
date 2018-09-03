@@ -13,12 +13,21 @@ class hethong_controller extends controller {
 		$sp_model = new sanpham_model();
 		$newProducts = $sp_model->newProducts(10);
 		$topNew = $sp_model->newProducts(3);
+		$topSell = $sp_model->listTopsell(3);
+
+		if(isset($_SESSION['topView']) && $_SESSION['topView']){
+			$topView = $sp_model->topView($_SESSION['topView'],3);
+		}			
+		else
+			$topView = '';
 
 		$data = array(
 			'sliders'=>$sliders,
 			'brands'=>$brands,
 			'newProducts'=>$newProducts,
-			'topNew'=>$topNew
+			'topNew'=>$topNew,
+			'topSell'=>$topSell,
+			'topView'=>$topView			
 		);
 
 		$this->render('home',$data);
@@ -26,17 +35,21 @@ class hethong_controller extends controller {
 
 	function contact(){		
 		$ht_model = new hethong_model();		
+		$generalInfo = $ht_model->generalInfo();
+		$generalInfo = json_decode($generalInfo, 512);
+		$map = $generalInfo['map'];
 		$data = array(			
-			
+			'map' => $map
 		);
 		// include 'view/hethong/contact.php';		
 		$this->render('contact',$data);
 	}
 
 	function about(){
-		
+		$ht_model = new hethong_model();
+		$aboutus = $ht_model->aboutus();
 		$data = array(			
-			
+			'aboutus' => $aboutus
 		);
 		// include 'view/hethong/contact.php';
 		$this->render('about',$data);
@@ -53,6 +66,19 @@ class hethong_controller extends controller {
 
 	function register(){
 		$this->render('register',array(),'accountlayout');
+	}
+
+	function account(){
+		$accInfo = '';
+		if(isset($_SESSION['account']) && $_SESSION['account']){
+			$ht_model = new hethong_model();
+			$accInfo = $ht_model->AccInfo($_SESSION['account'])[0];
+		}
+		
+		$data = array(
+			'accInfo' => $accInfo
+		);
+		$this->render('account', $data, 'accountlayout');
 	}
 }
 

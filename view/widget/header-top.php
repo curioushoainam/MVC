@@ -5,7 +5,7 @@
                 <div class="user-menu">
                     <ul> 
                          <?php //viewArr($_SESSION) ?>               
-                        <li><a href="#"><i class="fa fa-user"></i><?= isset($_SESSION['account']) ? $_SESSION['account'] : 'account' ?></a></li>                        
+                        <li><a href="?controller=hethong&action=account"><i class="fa fa-user"></i><?= isset($_SESSION['account']) ? $_SESSION['account'] : 'account' ?></a></li>                        
                         <li><a href="?controller=donhang&action=cart"><i class="fa fa-cart"></i> My Cart</a></li>
                         <li><a href="?controller=donhang&action=checkout"><i class="fa fa-user"></i> Checkout</a></li>
                         <li><a href="?controller=hethong&action=register"><i class="fa fa-user"></i> Register</a></li>

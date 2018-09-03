@@ -45,6 +45,23 @@ class sanpham_model extends database {
 		$this->setQuery($sql);
 		return $this->loadRows(array($prod_id, $ma_cha));
 	}
+
+	function listTopsell($qty = '*'){
+			
+		$sql = 'SELECT ma, ten, hinh, don_gia, don_gia_cu FROM `products` WHERE trang_thai=1 & topsell=1 ORDER BY ngay_tao ASC LIMIT 0,'.$qty ;
+		$this->setQuery($sql);
+		return $this->loadRows();
+	}
+
+	function topView($listID = array(),$qty = ''){
+		$limit = '';
+		if($qty)
+			$limit = " LIMIT 0, ". $qty;
+		$in  = str_repeat('?,', count($listID) - 1) . '?';
+		$sql = "SELECT ma, ten, hinh, don_gia, don_gia_cu FROM `products` where `ma` IN ($in)" . $limit;
+		$this->setQuery($sql);
+		return $this->loadRows($listID);
+	}
 }
 
 ?>

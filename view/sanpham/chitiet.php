@@ -3,6 +3,13 @@ if ($error){
     chuyentrang('?controller=sanpham&action=dsSanpham');    
 }
 
+if(isset($_GET['id']) && $_GET['id']){
+    if(!(isset($_SESSION['topView'])))
+        $_SESSION['topView'] = array();
+    if(!(in_array($_GET['id'], $_SESSION['topView'])))
+        array_unshift($_SESSION['topView'], $_GET['id']);
+}
+
 ?>
 
 <div class="product-big-title-area">
@@ -27,8 +34,8 @@ $don_gia_cu = isset($prod_info) && $prod_info->don_gia_cu ? $prod_info->don_gia_
 $danh_sach_hinh = isset($prod_info) && $prod_info->danh_sach_hinh ? $prod_info->danh_sach_hinh : NULL;
 ?>
 <div class="single-product-area">
-<div class="zigzag-bottom"></div>
-    <div class="container">
+<div class="zigzag-bottom"></div>    
+    <div class="container">      
         <div class="row">
             <!-- image -->
             <div class="col-md-10">
@@ -91,9 +98,9 @@ $danh_sach_hinh = isset($prod_info) && $prod_info->danh_sach_hinh ? $prod_info->
                 </div>  
             <!-- ======================================================= -->
                 <div class="col-md-7">
-                    <div class="thongtin">
-                        <h2 style="padding-left: 0px"><?= $ten ?></h2>
-                        <p class="price"><?= number_format($don_gia)?> VNĐ</p>
+                    <div class="thongtin">                        
+                        <h2 style="padding-left: 0px"><?= $ten ?></h2>                        
+                        <p class="price"><?= number_format($don_gia)?> VNĐ</p>                        
                         <img src="/First web project/admin/images/sales/sale_s8.jpg" />
                         <hr />
                         <!-- <h3 style="padding-left: 0px">Màu sắc</h3> -->
@@ -126,8 +133,8 @@ $danh_sach_hinh = isset($prod_info) && $prod_info->danh_sach_hinh ? $prod_info->
         <div class="row">
             <div class="col-md-10" id="contents">
                 <div>
-                    <button type="button" class="btn btn-info" style="width: 100%">Thông tin sản phẩm</button>
-                    <div id="prodSpec" style="margin: 10px">
+                    <button type="button" class="btn btn-info" style="width: 100%">Thông tin sản phẩm (MSP : <?= $ma ?>)</button>
+                    <div id="prodSpec" style="margin: 10px; overflow: hidden; height: 250px">
                         <?php                        
                             if($noi_dung_chi_tiet){
                                 include ('./view/sanpham/spec.php');                                                            
@@ -135,10 +142,11 @@ $danh_sach_hinh = isset($prod_info) && $prod_info->danh_sach_hinh ? $prod_info->
                             
                          ?>
                     </div>
+                    <div style="text-align: center; margin: 15px auto"><a href="#" data-size="0" type="button" id="xttgspec">Xem thêm</a></div>
                 </div>
-                <div style="z-index: 50;">
+                <div >      <!-- style="z-index: 50; " -->
                     <button type="button" class="btn btn-info" style="width: 100%">Bài viết</button>
-                    <div id="article" style="margin: 10px">
+                    <div id="article" style="margin: 10px; overflow: hidden; height: 100px">
                         <?php                             
                             echo $bai_viet;
                          ?>
@@ -302,6 +310,37 @@ $(document).on("click", ".reply",function(){
 
 });
 
+/*Article*/
+$('#xttg').click(function(event){
+    event.preventDefault();
+    var _that = $(this);
+    if(_that.data("size")==0){
+        $('#article').css('height','auto');
+        _that.html('Thu gọn');
+        _that.data("size",1);
+    } else {        
+        $('#article').height(100);
+        _that.html('Xem thêm');
+        _that.data("size",0);
+    }
+    return false;
+});
+
+/*Specification*/
+$('#xttgspec').click(function(event){
+    event.preventDefault();
+    var _that = $(this);
+    if(_that.data("size")==0){
+        $('#prodSpec').css('height','auto');
+        _that.html('Thu gọn');
+        _that.data("size",1);
+    } else {        
+        $('#prodSpec').height(250);
+        _that.html('Xem thêm');
+        _that.data("size",0);
+    }
+    return false;
+});
 
 </script>
 

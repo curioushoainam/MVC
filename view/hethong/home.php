@@ -131,12 +131,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <div class="single-product-widget">
+                <div class="single-product-widget">                    
                     <h2 class="product-wid-title">Top Sellers</h2>
                     <a href="" class="wid-view-more">View All</a>
+
+
+                <?php 
+                foreach($topSell as $item){
+                    $ma = isset($item->ma) ? $item->ma : '';
+                    $ten = isset($item->ten) ? $item->ten : '';
+                    $hinh = isset($item->hinh) ? $item->hinh : '';                            
+                    $don_gia = isset($item->don_gia) ? $item->don_gia : '0';  
+                    $don_gia_cu = isset($item->don_gia_cu) ? $item->don_gia_cu : '0';
+                ?>
+
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="<?= TEMPLATE_PATH ?>/img/product-thumb-1.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                        <a href="single-product.html"><img src="<?= $hinh ?>" alt="" class="product-thumb"></a>
+                        <h2><a href="single-product.html"><?= $ten ?></a></h2>
                         <div class="product-wid-rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -145,85 +156,50 @@
                             <i class="fa fa-star"></i>
                         </div>
                         <div class="product-wid-price">
-                            <ins>$400.00</ins> <del>$425.00</del>
+                            <ins><?= number_format($don_gia) ?>VND</ins> <del><?= number_format($don_gia_cu) ?>VND</del>
                         </div>                            
                     </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img src="<?= TEMPLATE_PATH ?>/img/product-thumb-2.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-product.html">Apple new mac book 2015</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins> <del>$425.00</del>
-                        </div>                            
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img src="<?= TEMPLATE_PATH ?>/img/product-thumb-3.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-product.html">Apple new i phone 6</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins> <del>$425.00</del>
-                        </div>                            
-                    </div>
+                    
+                    <?php 
+                    }
+                    ?>
+
+                    
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Recently Viewed</h2>
                     <a href="#" class="wid-view-more">View All</a>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img src="<?= TEMPLATE_PATH ?>/img/product-thumb-4.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+
+                    <?php                    
+                    if ($topView) {
+                        foreach($topView as $item){
+                            $ma = isset($item->ma) ? $item->ma : '';
+                            $ten = isset($item->ten) ? $item->ten : '';
+                            $hinh = isset($item->hinh) ? $item->hinh : '';                            
+                            $don_gia = isset($item->don_gia) ? $item->don_gia : '0';  
+                            $don_gia_cu = isset($item->don_gia_cu) ? $item->don_gia_cu : '0';
+                    ?>
+                        <div class="single-wid-product">
+                            <a href="single-product.html"><img src="<?= $hinh ?>" alt="" class="product-thumb"></a>
+                            <h2><a href="single-product.html"><?=  $ten ?></a></h2>
+                            <div class="product-wid-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product-wid-price">
+                                <ins><?= number_format($don_gia) ?>VND</ins> <del><?= number_format($don_gia_cu) ?>VND</del>
+                            </div>                            
                         </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins> <del>$425.00</del>
-                        </div>                            
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img src="<?= TEMPLATE_PATH ?>/img/product-thumb-1.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-product.html">Sony Smart Air Condtion</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins> <del>$425.00</del>
-                        </div>                            
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img src="<?= TEMPLATE_PATH ?>/img/product-thumb-2.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins> <del>$425.00</del>
-                        </div>                            
-                    </div>
+                    <?php 
+                        }
+                     }
+                     ?>
+
                 </div>
             </div>
 
