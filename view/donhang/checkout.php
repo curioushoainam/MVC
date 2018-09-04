@@ -203,7 +203,7 @@ if(!(isset($_SESSION['login'], $_SESSION['account']) && $_SESSION['login'] && $_
                                 <div class="col-xs-9">                      
                                   <div class="media">
                                     <a class="media-left" href="#">
-                                      <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/PP_Acceptance_Marks_for_LogoCenter_76x48.png" height="25" alt="" />
+                                      <img src="" height="25" alt="" />
                                     </a>
                                     <div class="media-body">
                                       Khi bạn click "Đặt hàng", bạn sẽ tới website PayPal.
@@ -216,7 +216,8 @@ if(!(isset($_SESSION['login'], $_SESSION['account']) && $_SESSION['login'] && $_
                       </div>
                       <div class="well">
                         <!-- <button type="button" class="btn btn-primary btn-lg btn-block" id="placeorder" name="placeorder" >Xem trước</button> -->
-                        <div><a type="button" class="btn btn-primary btn-lg" style="width: 100%" href="?controller=donhang&action=preview">Xem trước</a></div>
+                        <div><a type="button" class="btn btn-primary btn-lg" style="width: 100%" href="<?= href('preview', array('alias'=>'preview'), $seo) ?>">Xem trước</a></div>
+                        <!-- <div><a type="button" class="btn btn-primary btn-lg" style="width: 100%" href="?controller=donhang&action=preview">Xem trước</a></div> -->
                       </div>
                     </div>
                   </div>
@@ -238,7 +239,7 @@ $(document).on('click','#btn_promocode', function(){
   // alert(prod_id)
 
   $.ajax({
-    url : './controller/checkout.php',
+    url : './controller/processCheckout.php',
     dataType: 'text',
     type: 'post',
     data : {
@@ -265,7 +266,7 @@ $(document).on('click','#giftmsg', function(){
   // alert(prod_id)
 
   $.ajax({
-    url : './controller/checkout.php',
+    url : './controller/processCheckout.php',
     dataType: 'text',
     type: 'post',
     data : {
@@ -302,7 +303,7 @@ $(document).on('click','#btn_address', function(){
   }
 
   $.ajax({
-    url : './controller/checkout.php',
+    url : './controller/processCheckout.php',
     dataType: 'text',
     type: 'post',
     data : {
@@ -330,7 +331,7 @@ $(document).on('click','#btn_pay', function(){
   var pay = $('input:radio[name=paying]:checked').val();
 
   $.ajax({
-    url : './controller/checkout.php',
+    url : './controller/processCheckout.php',
     dataType: 'text',
     type: 'post',
     data : {

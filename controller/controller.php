@@ -13,6 +13,10 @@ class controller {
 
 		$ht_model = new hethong_model();
 		$menu = $ht_model->menu();
+		$menu = json_encode($menu);
+		$menu = json_decode($menu, 512);
+		$seo = $ht_model->seo();
+
 		$footer1 = $ht_model->footer1();
 		$footer2 = $ht_model->footer2();
 		$footer3 = $ht_model->footer3();

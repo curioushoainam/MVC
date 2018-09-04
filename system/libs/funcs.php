@@ -224,4 +224,64 @@ function menu_active($menu_name = ''){
     }
 }
 
+// the function selects using pathname in alias or origin
+function href($type, $item=array(), $seo){
+    if($seo){
+        switch ($type) {
+            case 'home':
+                return 'home';
+            case 'about':
+                return $item['alias'];
+            case 'contact':
+                return $item['alias'];
+
+
+            case 'cart':
+                return $item['alias'];
+            case 'checkout':
+                return $item['alias'];
+            case 'preview':
+                return $item['alias'];
+            case 'invoice':
+                return $item['alias'].'-'.$item['orderID'];
+
+
+            case 'dsSanpham':
+                return $item['alias'];
+            case 'chitiet':
+                return $item['alias'].'_'.$item['ma'];
+
+
+              
+        }
+    } else {
+        switch ($type) {
+            case 'home':
+                return 'index.php?controller=hethong&action=home';
+            case 'about':
+                return 'index.php?controller=hethong&action=about';
+            case 'contact':
+                return 'index.php?controller=hethong&action=contact';
+
+
+            case 'cart':
+                return 'index.php?controller=donhang&action=cart';
+            case 'checkout':
+                return 'index.php?controller=donhang&action=checkout';
+            case 'preview':
+                return 'index.php?controller=donhang&action=preview';
+            case 'invoice':
+                return 'index.php?controller=donhang&action=invoice&orderID='.$item['orderID'];
+
+
+            case 'dsSanpham':
+                return 'index.php?controller=sanpham&action=dsSanpham';
+            case 'chitiet':
+                return 'index.php?controller=sanpham&action=chitiet&id='.$item['ma'].'&alias='.$item['alias'];
+
+                
+        }
+    }
+} 
+
 ?>

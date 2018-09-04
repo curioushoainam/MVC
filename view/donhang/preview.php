@@ -1,12 +1,15 @@
 <?php 
 if(!(isset($_SESSION['login'], $_SESSION['account']) && $_SESSION['login'] && $_SESSION['account']))
-    chuyentrang('?controller=hethong&action=login');
+    // chuyentrang('?controller=hethong&action=login');
+    chuyentrang('login');
 
 if(!(isset($cart) && $cart))
-    chuyentrang('?controller=donhang&action=cart');
+    // chuyentrang('?controller=donhang&action=cart');
+    chuyentrang('cart-check');
 
 if(!(isset($order['ho_ten'], $order['dia_chi'], $order['phone'], $order['pay']) && $order['ho_ten'] && $order['dia_chi'] && $order['phone'] && $order['pay'])){
-    chuyentrang('?controller=donhang&action=checkout');
+    // chuyentrang('?controller=donhang&action=checkout');
+    chuyentrang('checkout');
 }
 
 ?>
@@ -154,8 +157,8 @@ $promocode = isset($order['promocode']) ? $order['promocode'] : '';
                         <!-- this row will not appear when printing -->
                         <div class="row no-print">
                             <div class="col-xs-12">
-                                <a href="?controller=donhang&action=cart" class="btn btn-info"><i class="fa fa-shopping-cart"></i> Cart</a>
-                                <a href="?controller=donhang&action=checkout" class="btn btn-info"><i class="fa fa-money"></i> Checkout</a>
+                                <a href="<?= href('cart', array('alias'=>'cart-check'), $seo) ?>" class="btn btn-info"><i class="fa fa-shopping-cart"></i> Cart</a>
+                                <a href="<?= href('checkout', array('alias'=>'checkout'), $seo) ?>" class="btn btn-info"><i class="fa fa-money"></i> Checkout</a>
                                 <!-- <button type="button" class="btn btn-success pull-right" id="placeorder" value="<?= $total ?>"><i class="fa fa-credit-card"></i> Đặt hàng</button> -->
                                 <form action="./controller/placeOrder.php" method="post">
                                     <button type="submit" class="btn btn-success pull-right" name="placeorder" value="<?= $total?>"><i class="fa fa-credit-card"></i> Đặt hàng</button>

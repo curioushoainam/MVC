@@ -4,11 +4,12 @@ require_once ('./../system/config/dbconfig.php');
 require_once ('./../system/libs/funcs.php');
 require_once ('./../system/core/Database.php');
 require_once ('./../system/core/DatabaseFuncs.php');
+require_once ('./../model/hethong_model.php');
 
 $db = new DatabaseFuncs();
 
 if(isset($_POST['placeorder']) && $_POST['placeorder']){
-		if(!(isset($_SESSION['orderID']) && $_SESSION['orderID']))
+		//if(!(isset($_SESSION['orderID']) && $_SESSION['orderID']))
 			$_SESSION['orderID'] = substr($_SESSION['account'],0,3).time();
 
 	$total = 0;
@@ -35,25 +36,32 @@ if(isset($_POST['placeorder']) && $_POST['placeorder']){
 		if($result){
 			unset($_SESSION['cart']);
 			unset($_SESSION['order']);
+			unset($_SESSION['orderID']);
 			// echo json_encode(array('state'=>'ok')); 
-			chuyentrang('../?controller=donhang&action=invoice&orderID='.$order['orderID']);
+			// chuyentrang('../?controller=donhang&action=invoice&orderID='.$order['orderID']);
+			$ht_model = new hethong_model();	
+			$seo = $ht_model->seo();			
+			chuyentrang('../'.href("invoice",array("alias"=>"invoice", "orderID"=>$order["orderID"]), $seo));
 		}
 		else{
 			// echo json_encode(array('state'=>'error'));
 			$_SESSION['errmsg'] = 'Đặt hàng không thành công. Xin thử lại';
-			chuyentrang('../?controller=donhang&action=preview');
+			// chuyentrang('../?controller=donhang&action=preview');
+			chuyentrang('../'.href("preview", array("alias"=>"preview"), $seo));
 		}
 			
 
 	} else {
 		// echo json_encode(array('state'=>'error'));
 		$_SESSION['errmsg'] = 'Xin kiểm tra lại giá trị total';
-		chuyentrang('../?controller=donhang&action=preview');
+		// chuyentrang('../?controller=donhang&action=preview');
+		chuyentrang('../href("preview", array("alias"=>"preview"), $seo)');
 	}
 } else {
 		// echo json_encode(array('state'=>'error'));
 		$_SESSION['errmsg'] = 'Thông tin đặt hàng không hợp lệ';
-		chuyentrang('../?controller=donhang&action=preview');
+		// chuyentrang('../?controller=donhang&action=preview');
+		chuyentrang('../href("preview", array("alias"=>"preview"), $seo)');
 
 }
 

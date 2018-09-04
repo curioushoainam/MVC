@@ -31,9 +31,9 @@ class sanpham_controller extends controller {
 		$prod_info = NULL;
 		$bai_viet = 'Bài viết đang được cập nhật';
 		$comment = array();
-		if(isset($_GET['id']) && $_GET['id']){	
+		if(isset($_GET['id'],$_GET['alias']) && $_GET['id'] && $_GET['alias']){	
 			$error = false;						
-			$prod_info = $sp_model->prodDetail($_GET['id']);			
+			$prod_info = $sp_model->prodDetail($_GET['id'],$_GET['alias']);			
 
 			$article = $sp_model->prodArticle($_GET['id']);
 			if($article)

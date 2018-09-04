@@ -2,10 +2,14 @@
 require_once ('./../system/config/dbconfig.php');
 require_once ('./../system/core/Database.php');
 require_once ('./../model/sanpham_model.php');
+require_once ('./../model/hethong_model.php');
 
 require_once ('./../system/core/Pagination.php');
 require_once ('./../model/shop_page_model.php');
 include ('./../system/libs/funcs.php');
+
+$ht_model = new hethong_model();		
+$seo = $ht_model->seo();
 
 if(isset($_POST['page']) && $_POST['page'] >0){
 	$sp_model = new sanpham_model();			
@@ -17,6 +21,7 @@ if(isset($_POST['page']) && $_POST['page'] >0){
     foreach ($listProducts as $item){
         $ma = isset($item->ma) ? $item->ma : '';
         $ten = isset($item->ten) ? $item->ten : '';
+        $alias = isset($item->alias) ? $item->alias : '';
         $hinh = isset($item->hinh) ? $item->hinh : '';                
         $don_gia = isset($item->don_gia) ? $item->don_gia : '0';  
         $don_gia_cu = isset($item->don_gia_cu) ? $item->don_gia_cu : '0';
@@ -34,7 +39,7 @@ if(isset($_POST['page']) && $_POST['page'] >0){
 	            <div class="product-carousel-price text-center" style="margin: 15px auto">
 	                <ins>' . number_format($don_gia) .'</ins> <del>' . ($don_gia_cu ? number_format($don_gia_cu) : "") .'</del>
 	            </div> 
-	            <div style="hight: 30px" class="text-center"><a href="?controller=sanpham&action=chitiet&id='. $ma .'"><span style="font-size: 1.1em">'. $ten .'</span></a></div>	            
+	            <div style="hight: 30px" class="text-center"><a href="'. href('chitiet', array('alias'=>$alias,'ma'=> $ma), $seo) .'"><span style="font-size: 1.1em">'. $ten .'</span></a></div>	            
 	        </div>
 	    </div>';   
     }
@@ -57,6 +62,7 @@ if(isset($_POST['pos'], $_POST['limit']) && $_POST['limit'] >0){
 	$contents = '';
     foreach ($listProducts as $item){
         $ma = isset($item->ma) ? $item->ma : '';
+        $alias = isset($item->alias) ? $item->alias : '';
         $ten = isset($item->ten) ? $item->ten : '';
         $hinh = isset($item->hinh) ? $item->hinh : '';                
         $don_gia = isset($item->don_gia) ? $item->don_gia : '0';  
@@ -75,7 +81,7 @@ if(isset($_POST['pos'], $_POST['limit']) && $_POST['limit'] >0){
 	            <div class="product-carousel-price text-center" style="margin: 15px auto">
 	                <ins>' . number_format($don_gia) .'</ins> <del>' . ($don_gia_cu ? number_format($don_gia_cu) : "") .'</del>
 	            </div> 
-	            <div style="hight: 30px" class="text-center"><a href="?controller=sanpham&action=chitiet&id='. $ma .'"><span style="font-size: 1.1em">'. $ten .'</span></a></div>	            
+	            <div style="hight: 30px" class="text-center"><a href="'. href('chitiet', array('alias'=>$alias,'ma'=> $ma), $seo).'"><span style="font-size: 1.1em">'. $ten .'</span></a></div>	            
 	        </div>
 	    </div>';
 	    $pos ++;   

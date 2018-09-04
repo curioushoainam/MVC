@@ -69,12 +69,15 @@
                     <h2 class="section-title">Latest Products</h2>
                     <div class="product-carousel">
                         <?php 
+                        // viewArr($newProducts);
                         foreach ($newProducts as $item){
                             $ma = isset($item->ma) ? $item->ma : '';
+                            $alias = isset($item->alias) ? $item->alias : '';
                             $ten = isset($item->ten) ? $item->ten : '';
                             $hinh = isset($item->hinh) ? $item->hinh : '';                            
                             $don_gia = isset($item->don_gia) ? $item->don_gia : '0';  
                             $don_gia_cu = isset($item->don_gia_cu) ? $item->don_gia_cu : '0';  
+                           
                         ?>        
 
                         <div class="single-product">
@@ -82,14 +85,16 @@
                                 <img src="<?= $hinh ?>" alt="" style="height: 243px; margin-bottom: 10px">
                                 <div class="product-hover">
                                     <a href="#" class="add-to-cart-link addtocart" data-prod_id="<?= $ma ?>"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                    <a href="?controller=sanpham&action=chitiet&id=<?= $ma ?>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                    <!-- <a href="?controller=sanpham&action=chitiet&id=<?= $ma ?>" class="view-details-link"><i class="fa fa-link"></i> See details</a> -->
+                                    <a href="<?= href('chitiet', array('alias'=>$alias,'ma'=> $ma), $seo) ?>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                 </div>
                             </div>
                             
                             <div class="product-carousel-price">
                                 <ins><?= number_format($don_gia)?>VND</ins> <del><?= number_format($don_gia_cu)?>VND</del>
                             </div> 
-                            <h2><a href="?controller=sanpham&action=chitiet&id=<?= $ma ?>"><?= $ten ?></a></h2>
+                            <h2><a href="<?= href('chitiet', array('alias'=>$alias,'ma'=> $ma), $seo) ?>"><?= $ten ?></a></h2>
+                            <!-- <h2><a href="?controller=sanpham&action=chitiet&id=<?= $ma ?>"><?= $ten ?></a></h2> -->
                         </div>
 
                         <?php 

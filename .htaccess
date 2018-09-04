@@ -1,16 +1,29 @@
 RewriteEngine On
+# trang home / about / contact
+#RewriteRule (^[a-zA-Z0-9?\-=&]+$) index.php?controller=hethong&action=$1
+RewriteRule home index.php?controller=hethong&action=home
+RewriteRule about index.php?controller=hethong&action=about
+RewriteRule contact index.php?controller=hethong&action=contact
+
+RewriteRule login index.php?controller=hethong&action=login
+
+
+
+# trang cart / checkout / preview /
+RewriteRule cart-check index.php?controller=donhang&action=cart
+RewriteRule checkout index.php?controller=donhang&action=checkout
+RewriteRule preview index.php?controller=donhang&action=preview
 
 # trang dsSanpham
-RewriteRule sanpham ?controller=sanpham&action=dsSanpham
+RewriteRule shop-page index.php?controller=sanpham&action=dsSanpham
 
-	
-# trang home
-RewriteRule home sanpham?controller=hethong&action=home
+# trang invoice
+RewriteRule (^[a-zA-Z0-9?\-=&]+)-([a-zA-Z0-9?\-=&]+$) index.php?controller=donhang&action=$1&orderID=$2
 
 # trang chi tiet
-# RewriteRule (^[a-zA-Z0-9?=&]+)-([0-9]+$) ?controller=sanpham&action=chitiet&id=$2
-# viết hàm để có thể tự động chuyển đổi pathname khi từ phía admin
+RewriteRule (^[a-zA-Z0-9?\-=&]+)_([0-9]+)$ index.php?controller=sanpham&action=chitiet&id=$2&alias=$1
+# where $1 is [a-zA-Z0-9?\-=&]+  is the alias
+# where $2 is [0-9]+  is the product id
+# viết hàm để có thể tự động chuyển đổi pathname từ phía admin
 
-RewriteRule (^[a-zA-Z0-9?=&]+)-([0-9]+)$ ?controller=sanpham&action=chitiet&id=$2&alias=$1
-# where $1 is [a-zA-Z0-9?=&]+
-# $2 is [0-9]+
+

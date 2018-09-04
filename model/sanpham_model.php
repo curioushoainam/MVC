@@ -1,7 +1,7 @@
 <?php 
 class sanpham_model extends database {
 	function newProducts($qty = '*'){
-		$sql = 'SELECT ma, ten, hinh, don_gia, don_gia_cu FROM `products` WHERE trang_thai=1 ORDER BY ma DESC LIMIT 0,'.$qty ;
+		$sql = 'SELECT ma, ten, alias, hinh, don_gia, don_gia_cu FROM `products` WHERE trang_thai=1 ORDER BY ma DESC LIMIT 0,'.$qty ;
 		$this->setQuery($sql);
 		return $this->loadRows();
 	}
@@ -11,7 +11,7 @@ class sanpham_model extends database {
 			$orderby = ' ORDER BY ma DESC LIMIT '.$start.','.$limit ;
 		} else 
 			$orderby = '';
-		$sql = 'SELECT ma, ten, hinh, don_gia, don_gia_cu FROM `products` WHERE trang_thai=1 '.$orderby;
+		$sql = 'SELECT ma, ten, alias, hinh, don_gia, don_gia_cu FROM `products` WHERE trang_thai=1 '.$orderby;
 		$this->setQuery($sql);
 		return $this->loadRows();
 	}
@@ -22,10 +22,16 @@ class sanpham_model extends database {
 		return $this->loadRow()->totalRecords;
 	}
 
-	function prodDetail($product_id){
-		$sql = 'SELECT `ma`, `ten`, `noi_dung_chi_tiet`, `don_gia`, `don_gia_cu`, `danh_sach_hinh`  FROM `products` WHERE trang_thai=1 AND ma=?';
+	function prodDetail($product_id, $alias=''){
+		if($alias){
+			$sql = 'SELECT `ma`, `ten`, `noi_dung_chi_tiet`, `don_gia`, `don_gia_cu`, `danh_sach_hinh`  FROM `products` WHERE trang_thai=1 AND ma=? AND alias=?';
+			$input = array($product_id, $alias);
+		} else {
+			$sql = 'SELECT `ma`, `ten`, `noi_dung_chi_tiet`, `don_gia`, `don_gia_cu`, `danh_sach_hinh`  FROM `products` WHERE trang_thai=1 AND ma=?';
+			$input = array($product_id);
+		}
 		$this->setQuery($sql);
-		return $this->loadRow(array($product_id));
+		return $this->loadRow($input);
 	}
 
 	function prodArticle($product_id){
@@ -48,7 +54,7 @@ class sanpham_model extends database {
 
 	function listTopsell($qty = '*'){
 			
-		$sql = 'SELECT ma, ten, hinh, don_gia, don_gia_cu FROM `products` WHERE trang_thai=1 & topsell=1 ORDER BY ngay_tao ASC LIMIT 0,'.$qty ;
+		$sql = 'SELECT ma, ten, alias, hinh, don_gia, don_gia_cu FROM `products` WHERE trang_thai=1 & topsell=1 ORDER BY ngay_tao ASC LIMIT 0,'.$qty ;
 		$this->setQuery($sql);
 		return $this->loadRows();
 	}
@@ -58,7 +64,7 @@ class sanpham_model extends database {
 		if($qty)
 			$limit = " LIMIT 0, ". $qty;
 		$in  = str_repeat('?,', count($listID) - 1) . '?';
-		$sql = "SELECT ma, ten, hinh, don_gia, don_gia_cu FROM `products` where `ma` IN ($in)" . $limit;
+		$sql = "SELECT ma, ten, alias, hinh, don_gia, don_gia_cu FROM `products` where `ma` IN ($in)" . $limit;
 		$this->setQuery($sql);
 		return $this->loadRows($listID);
 	}

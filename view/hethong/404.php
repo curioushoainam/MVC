@@ -7,7 +7,8 @@
         Try refreshing the page or click the button below to go back to the Homepage.
         <div><br/>
             <!-- <a class=" login-detail-panel-button btn" href="http://vultus.de/"> -->
-            <a href="?controller=hethong&action=home" class="btn btn-primary"><span class="fa fa-home fa-2x"></span> Go back to Homepage</a>
+            <a href="<?= href('home', '', 1) ?>" class="btn btn-primary"><span class="fa fa-home fa-2x"></span> Go back to Homepage</a>
+            <!-- <a href="?controller=hethong&action=home" class="btn btn-primary"><span class="fa fa-home fa-2x"></span> Go back to Homepage</a> -->
         </div>
     </div>
 </div>

@@ -84,6 +84,13 @@ class hethong_model extends Database{
 		$this->setQuery($sql);
 		return $this->loadRows(array($account));			
 	}
+
+	function seo(){
+		$sql = 'SELECT `gia_tri` FROM `config` WHERE trang_thai=1 && `khoa`="seo" ' ;
+		$this->setQuery($sql);
+		return $this->loadRow()->gia_tri;
+	}
+	
 }
 
 

@@ -1,6 +1,7 @@
 <?php 
 if ($error){    
-    chuyentrang('?controller=sanpham&action=dsSanpham');    
+    // chuyentrang('?controller=sanpham&action=dsSanpham');    
+    chuyentrang(href('dsSanpham',array('alias'=>'dsSanpham'), $seo));    
 }
 
 if(isset($_GET['id']) && $_GET['id']){
