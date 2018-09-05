@@ -55,10 +55,14 @@ $(document).ready(function(){
 	// 	}
 	// });
 
+});
+
+$(document).ready(function(){
 	// ===============================================
 	// pagination with button "see more"
+	// /MVC/controller/shop_page_controller.php'
 	$.ajax({
-		url: '/MVC/controller/shop_page_controller.php',
+		url: './controller/shop_page_controller.php',
 		type : 'post',
 		dataType : 'text',
 		data :{
@@ -78,9 +82,7 @@ $(document).ready(function(){
 		},
 		complete : function(){			
 		}
-	});	
-
-
+	});
 
 });
 
@@ -88,7 +90,7 @@ $(document).on("click",".page", function(event){
 	var _that = $(this);	
 	event.preventDefault(); 
 	$.ajax({
-		url: '/MVC/controller/shop_page_controller.php',
+		url: './controller/shop_page_controller.php',
 		type : 'post',
 		dataType : 'text',
 		data :{
@@ -110,7 +112,7 @@ $(document).on("click",".page", function(event){
 $(document).on("click","#more", function(event){
 	var _that = $(this);
 	$.ajax({
-		url: '/MVC/controller/shop_page_controller.php',
+		url: './controller/shop_page_controller.php',
 		type : 'post',
 		dataType : 'text',
 		data :{

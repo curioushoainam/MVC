@@ -11,13 +11,15 @@ class sanpham_controller extends controller {
 
 		$pages = $shop_page->html();
 		// Phân trang theo URL
-		// $listProducts = $sp_model->listProducts($shop_page->get_config('start'),$shop_page->get_config('limit'));
+		// $listProducts = $sp_model->listProducts(0,8);	
+		$contents = '';		
+
 
 		// Phân trang theo ajax
-		$listProducts = $sp_model->listProducts(0,$shop_page->get_config('limit'));
-		
+		// $listProducts = $sp_model->listProducts(0,$shop_page->get_config('limit'));		
+
 		$data = array(			
-			'listProducts'=>$listProducts,
+			'contents'=>$contents,
 			'pages'=>$pages
 		);
 		//include 'view/sanpham/productlist.php';

@@ -9,7 +9,7 @@
             
             <div class="col-sm-6">
                 <div class="shopping-item">
-                    <a href="?controller=donhang&action=cart"><i class="fa fa-shopping-cart"></i>&nbsp&nbsp<span id="countcart" style="color: red"><?= $countcart ?></span></a>
+                    <a href="<?= href('cart',array('alias'=>'cart-check'), $seo) ?>"><i class="fa fa-shopping-cart"></i>&nbsp&nbsp<span id="countcart" style="color: red"><?= $countcart ?></span></a>
                 </div>
             </div>
         </div>

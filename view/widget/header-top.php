@@ -52,7 +52,7 @@ $(document).ready(function(){
     $(document).on("click","#logout", function(event){       
         event.preventDefault();
         $.ajax({
-            url: '/MVC/view/hethong/logout.php',
+            url: './view/hethong/logout.php',
             type : 'post',
             dataType : 'text',
             data :{

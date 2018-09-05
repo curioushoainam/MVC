@@ -52,8 +52,9 @@
                         <li><a href="#">Front page</a></li>
                     </ul> -->                        
                     <?php
-                        $footer2 = json_decode($footer2,512);
-                        echo htmlspecialchars_decode($footer2['naviHtml']);
+                        // $footer2 = json_decode($footer2,512);
+                        // echo htmlspecialchars_decode($footer2['naviHtml']);
+                        echo $footer2;
                     ?>
                 </div>
             </div>
@@ -69,8 +70,7 @@
                         <li><a href="#">Gadets</a></li>
                     </ul>  --> 
                     <?php
-                        $footer3 = json_decode($footer3,512);
-                        echo htmlspecialchars_decode($footer3['catalog']);
+                       echo $footer3;                        
                     ?>                      
                 </div>
             </div>
@@ -86,8 +86,7 @@
                         </form>
                     </div> -->
                     <?php
-                        $footer4 = json_decode($footer4,512);
-                        echo htmlspecialchars_decode($footer4['newsletter']);
+                        echo $footer4;
                     ?> 
                 </div>
             </div>
