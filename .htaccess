@@ -7,7 +7,9 @@ RewriteRule contact index.php?controller=hethong&action=contact
 
 RewriteRule login index.php?controller=hethong&action=login
 
+RewriteRule account index.php?controller=hethong&action=account
 
+RewriteRule register index.php?controller=hethong&action=register
 
 # trang cart / checkout / preview /
 RewriteRule cart-check index.php?controller=donhang&action=cart

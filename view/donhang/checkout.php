@@ -1,6 +1,7 @@
 <?php 
 if(!(isset($_SESSION['login'], $_SESSION['account']) && $_SESSION['login'] && $_SESSION['account']))
-    chuyentrang('?controller=hethong&action=login');
+    // chuyentrang('?controller=hethong&action=login');
+    chuyentrang(href('login',array('alias'=>'login'), $seo));
 ?>
 
 

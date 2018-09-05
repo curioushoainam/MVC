@@ -251,6 +251,12 @@ function href($type, $item=array(), $seo){
             case 'chitiet':
                 return $item['alias'].'_'.$item['ma'];
 
+            case 'login':
+                return $item['alias'];
+            case 'register':
+                return $item['alias'];
+            case 'account':
+                return $item['alias'];
 
               
         }
@@ -279,7 +285,13 @@ function href($type, $item=array(), $seo){
             case 'chitiet':
                 return 'index.php?controller=sanpham&action=chitiet&id='.$item['ma'].'&alias='.$item['alias'];
 
-                
+            case 'login':
+                return 'index.php?controller=hethong&action=login';
+            case 'register':
+                return 'index.php?controller=hethong&action=register';
+            case 'account':
+                return 'index.php?controller=hethong&action=account';
+
         }
     }
 } 

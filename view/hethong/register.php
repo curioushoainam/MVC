@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		    			<input type="submit" name="register" value="Đăng ký" class="btn btn-info btn-block">
 
 		    			<div style="margin: 20px auto">
-		    				<span>Đã có tài khoản &nbsp => &nbsp&nbsp </span><a href="?controller=hethong&action=login">Đăng nhập</a>
+		    				<span>Đã có tài khoản &nbsp => &nbsp&nbsp </span><a href="<?= href('home',array('alias'=>'home'), $seo) ?>">Đăng nhập</a>
 		    			</div>
 		    		
 		    		</form>

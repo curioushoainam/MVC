@@ -19,7 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         setcookie('account', $_POST['ten_dang_nhap'], time() + (86400 *90), '/', DOMAIN);    // save 90 days
                         setcookie('password', $_POST['password'], time() + (86400 *90), '/', DOMAIN); 
                     }
-                    chuyentrang('?controller=hethong&action=home');
+                    // chuyentrang('?controller=hethong&action=home');
+                    chuyentrang(href('home',array('alias'=>'home'), $seo));
                 } else 
                     $passwordErr = 'Mật khẩu không đúng';
             } else

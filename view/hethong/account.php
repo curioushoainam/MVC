@@ -1,6 +1,7 @@
 <?php 
 if(!(isset($_SESSION['account']) && $_SESSION['account'])){
-	chuyentrang('?controller=hethong&action=home');
+	// chuyentrang('?controller=hethong&action=home');
+	chuyentrang(href('home',array('alias'=>'home'), $seo));
 }
 
 // $validation = new Validation();
@@ -126,7 +127,8 @@ $ngay_cap_nhat = isset($accInfo->ngay_cap_nhat) ? $accInfo->ngay_cap_nhat : '-';
 		    			<input type="submit" name="changePW" value="Cập nhật password" class="btn btn-info btn-block">
 		    			
 		    			<div class="text-center"><br>
-		    				<a href="?controller=hethong&action=home">Home</a>
+		    				<!-- <a href="?controller=hethong&action=home">Home</a> -->
+		    				<a href="<?= href('home',array('alias'=>'home'), $seo) ?>">Home</a>
 		    			</div>
 		    		</form>
 		    	</div>
