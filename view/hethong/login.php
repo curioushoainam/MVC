@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 } else 
                     $passwordErr = 'Mật khẩu không đúng';
             } else
-                $ten_dang_nhapErr = 'Tài khoản không tồn tại';
+                $ten_dang_nhapErr = 'Tài khoản không tồn tại hoặc chưa được xác thực';
        } 
     }
 }

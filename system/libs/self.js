@@ -283,8 +283,6 @@ $(document).on('click', '.btn_delitem', function(){
 
 
 // preventing refresh many times
-<script>
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 }
-</script>

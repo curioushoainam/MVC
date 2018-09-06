@@ -19,7 +19,7 @@ class hethong_model extends Database{
 	}
 
 	function isAccAvail($account){
-		$sql = 'SELECT ma FROM `user` WHERE ten_dang_nhap= ? ' ;
+		$sql = 'SELECT ma FROM `user` WHERE ten_dang_nhap= ? && xac_thuc=1 && trang_thai=1' ;
 		$this->setQuery($sql);
 		if ($this->loadRow(array($account)))
 			return true;
@@ -28,7 +28,7 @@ class hethong_model extends Database{
 	}
 
 	function checkpassword($account, $password){
-		$sql = 'SELECT password FROM `user` WHERE ten_dang_nhap= ? ' ;
+		$sql = 'SELECT password FROM `user` WHERE ten_dang_nhap= ? && xac_thuc=1 && trang_thai=1' ;
 		$this->setQuery($sql);
 		$pw = $this->loadRow(array($account));
 		if ($pw)
