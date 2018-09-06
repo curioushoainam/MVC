@@ -12,11 +12,23 @@ $reg = array(
 	'password'=>NULL
 );
 
-$ho_tenErr=$dia_chiErr=$emailErr=$ten_dang_nhapErr=$passwordErr=$sdtErr=NULL;
+$ho_tenErr=$dia_chiErr=$emailErr=$ten_dang_nhapErr=$passwordErr=$sdtErr=$captchaErr=NULL;
 $msg = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-	if(isset($_POST["register"]) && $_POST["register"]){
+	if(isset($_POST["register"], $_POST['g-recaptcha-response']) && $_POST["register"] && $_POST['g-recaptcha-response']){
 		
+		// set up google recaptcha
+		$secretkey = '6LcLr24UAAAAABLUubA1m5b8CtdtWn6-QmXfcX8i';
+		$responsekey = $_POST['g-recaptcha-response'];
+		$apiurl = 'https://www.google.com/recaptcha/api/siteverify?secret='.$secretkey.'&response='.$responsekey.'&remoteip='.$_SERVER['SERVER_ADDR'];
+
+		// send and receive google feedback on json data
+		$jsonresp = file_get_contents($apiurl);
+		$captchaObj = json_decode($jsonresp);
+		// check its result
+		if(!(isset($captchaObj->success) && $captchaObj->success))
+			$captchaErr = 'You are robot';
+
 		if(isset($_POST["ho_ten"]) && $_POST["ho_ten"]){
 			if($validation->isCommonChars($_POST["ho_ten"]))
 				$reg['ho_ten'] = $_POST["ho_ten"];
@@ -66,13 +78,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		} else 
 			$passwordErr = 'Password không tồn tại';
 
-		if(!($ho_tenErr||$dia_chiErr||$sdtErr||$emailErr||$ten_dang_nhapErr||$passwordErr)){
+		if(!($ho_tenErr||$dia_chiErr||$sdtErr||$emailErr||$ten_dang_nhapErr||$passwordErr||$captchaErr)){
 			$reg['ngay_tao'] = date('Y-m-d H:i:s');
 			$reg['ngay_cap_nhat'] = NULL;
 			$reg['xac_thuc'] = NULL;
 			$result = $dbfunc->create('user', $reg);
 			if($result)
-				chuyentrang('?controller=hethong&action=login');
+				chuyentrang(href('login',array('alias'=>'login'), $seo));
 			else
 				$msg = 'Đăng ký không thành công O_O';
 		}
@@ -133,10 +145,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		    				</div>		    					    				
 		    			</div>		    			
 		    			
+						<div class="form-group">							
+                            <div class="g-recaptcha" data-sitekey="6LcLr24UAAAAAC3AeNtN3Lm7aDOyM8brP0hX8v3v"></div>
+                            <span style="color: red"><?= $captchaErr ?></span>
+                        </div>
+
 		    			<input type="submit" name="register" value="Đăng ký" class="btn btn-info btn-block">
 
 		    			<div style="margin: 20px auto">
-		    				<span>Đã có tài khoản &nbsp => &nbsp&nbsp </span><a href="<?= href('home',array('alias'=>'home'), $seo) ?>">Đăng nhập</a>
+		    				<span>Đã có tài khoản &nbsp => &nbsp&nbsp </span><a href="<?= href('login',array('alias'=>'login'), $seo) ?>">Đăng nhập</a>
 		    			</div>
 		    		
 		    		</form>

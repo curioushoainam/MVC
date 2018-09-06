@@ -42,6 +42,9 @@ defined('DOMAIN') or exit('Access deny');
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     
+    <!-- Recaptcha -->    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
   </head>
   <body>
    

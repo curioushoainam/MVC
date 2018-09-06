@@ -12,7 +12,10 @@
 
 	<link rel="stylesheet" href="<?= TEMPLATE_PATH ?>/css/font-awesome.min.css">	
 	<link rel="stylesheet" href="<?= DOMAIN ?>/system/libs/account.css">
-
+	
+	<!-- Recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
 </head>
 <body>	
 <section>
@@ -28,4 +31,9 @@
 	
 
 </body>
+<script>
+	if ( window.history.replaceState ) {
+	  window.history.replaceState( null, null, window.location.href );
+	}
+</script>
 </html>
