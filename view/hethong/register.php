@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		if(!($ho_tenErr||$dia_chiErr||$sdtErr||$emailErr||$ten_dang_nhapErr||$passwordErr||$captchaErr)){
 			$reg['ngay_tao'] = date('Y-m-d H:i:s');
 			$reg['ngay_cap_nhat'] = NULL;
-			$reg['xac_thuc'] = NULL;
+			$reg['xac_thuc'] = 0;
 			$result = $dbfunc->create('user', $reg);
 			if($result)
 				chuyentrang(href('login',array('alias'=>'login'), $seo));
