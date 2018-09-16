@@ -13,10 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if($ht_model->isAccAvail($_POST["ten_dang_nhap"])){
                 $ten_dang_nhap = $_POST["ten_dang_nhap"];
                 if($ht_model->checkpassword($_POST['ten_dang_nhap'], $_POST['password'])){
-                    $_SESSION['login'] = true;
-                    $_SESSION['account'] = $_POST['ten_dang_nhap'];
+                    $_SESSION['user_login'] = true;
+                    $_SESSION['user'] = $_POST['ten_dang_nhap'];
                     if (isset($_POST['save']) && $_POST['save']) {  
-                        setcookie('account', $_POST['ten_dang_nhap'], time() + (86400 *90), '/', DOMAIN);    // save 90 days
+                        setcookie('user', $_POST['ten_dang_nhap'], time() + (86400 *90), '/', DOMAIN);    // save 90 days
                         setcookie('password', $_POST['password'], time() + (86400 *90), '/', DOMAIN); 
                     }
                     // chuyentrang('?controller=hethong&action=home');

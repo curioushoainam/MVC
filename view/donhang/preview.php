@@ -1,5 +1,5 @@
 <?php 
-if(!(isset($_SESSION['login'], $_SESSION['account']) && $_SESSION['login'] && $_SESSION['account']))
+if(!(isset($_SESSION['user_login'], $_SESSION['user']) && $_SESSION['user_login'] && $_SESSION['user']))
     // chuyentrang('?controller=hethong&action=login');
     chuyentrang('login');
 

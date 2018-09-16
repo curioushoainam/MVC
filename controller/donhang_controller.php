@@ -17,8 +17,8 @@ class donhang_controller extends controller{
 		$dh_model = new donhang_model();
 		$dh_model->setorder();
 		
-		if(isset($_SESSION['account']))
-			$user = $dh_model->getUserInfo($_SESSION['account']);
+		if(isset($_SESSION['user']))
+			$user = $dh_model->getUserInfo($_SESSION['user']);
 		$user_id = isset($user->ma) ? $user->ma : '';
 		$ho_ten = isset($user->ho_ten) ? $user->ho_ten : '';
 		$dia_chi = isset($user->dia_chi) ? $user->dia_chi : '';
@@ -36,7 +36,7 @@ class donhang_controller extends controller{
 	function preview(){			
 		$cart = $_SESSION['cart'];
 		$order = $_SESSION['order'];
-		$account = $_SESSION['account'];
+		$account = isset($_SESSION['user']) ? $_SESSION['user'] : '';
 		$data = array(			
 			'cart'=>$cart,
 			'order'=>$order,
@@ -48,7 +48,7 @@ class donhang_controller extends controller{
 	function invoice(){			
 
 		$dh_model = new donhang_model();
-		$invoice = $dh_model->getInvoice($_SESSION['account'], $_GET['orderID']);		
+		$invoice = $dh_model->getInvoice($_SESSION['user'], $_GET['orderID']);		
 
 		$ma = isset($invoice->ma) ? $invoice->ma : '';
 		$account = isset($invoice->account) ? $invoice->account : '';

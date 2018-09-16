@@ -6,14 +6,14 @@
                     <ul> 
                          <?php //viewArr($_SESSION) ?>
 
-                        <li><a href="<?= href('account',array('alias'=>'account'), $seo) ?>"><i class="fa fa-user"></i><?= isset($_SESSION['account']) ? $_SESSION['account'] : 'account' ?></a></li>                        
+                        <li><a href="<?= href('account',array('alias'=>'account'), $seo) ?>"><i class="fa fa-user"></i><?= isset($_SESSION['user']) ? $_SESSION['user'] : 'O_O' ?></a></li>                        
                         <li><a href="<?= href('cart',array('alias'=>'cart-check'), $seo) ?>"><i class="fa fa-cart"></i> My Cart</a></li>
                         <li><a href="<?= href('checkout',array('alias'=>'checkout'), $seo) ?>"><i class="fa fa-user"></i> Checkout</a></li>
                         <li><a href="<?= href('register',array('alias'=>'register'), $seo) ?>"><i class="fa fa-user"></i> Register</a></li>
-                        <?php $isNone = isset($_SESSION['login']) && $_SESSION['login'] ? '' : 'none' ?>
-                        <li style = "display:<?= isset($_SESSION['login']) && $_SESSION['login'] ? 'none' : '' ?>"><a href="<?= href('login',array('alias'=>'login'), $seo) ?>"><i class="fa fa-user"></i>Login</a></li>
+                        <?php $isNone = isset($_SESSION['user_login']) && $_SESSION['user_login'] ? '' : 'none' ?>
+                        <li style = "display:<?= isset($_SESSION['user_login']) && $_SESSION['user_login'] ? 'none' : '' ?>"><a href="<?= href('login',array('alias'=>'login'), $seo) ?>"><i class="fa fa-user"></i>Login</a></li>
 
-                        <li style = "display:<?= isset($_SESSION['login']) && $_SESSION['login'] ? '' : 'none' ?>"><a href="#" id="logout"><i class="fa fa-user"></i>Logout</a></li>
+                        <li style = "display:<?= isset($_SESSION['user_login']) && $_SESSION['user_login'] ? '' : 'none' ?>"><a href="#" id="logout"><i class="fa fa-user"></i>Logout</a></li>
                     </ul>
                 </div>
             </div>

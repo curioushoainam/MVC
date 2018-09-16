@@ -12,12 +12,12 @@ function login(){
     require_once('./model/hethong_model.php');
     $ht_model = new hethong_model();   
     
-	if(isset($_COOKIE['account'], $_COOKIE['password']) && $_COOKIE['account'] &&  $_COOKIE['password']){
-        if($ht_model->checkpassword($_COOKIE['account'], $_COOKIE['password'])){
-            $_SESSION['login'] = true;
-            $_SESSION['account'] = $_COOKIE['account'];       
+	if(isset($_COOKIE['user'], $_COOKIE['password']) && $_COOKIE['user'] &&  $_COOKIE['password']){
+        if($ht_model->checkpassword($_COOKIE['user'], $_COOKIE['password'])){
+            $_SESSION['user_login'] = true;
+            $_SESSION['user'] = $_COOKIE['user'];       
         } else {
-            unset($_SESSION['account']);
+            unset($_SESSION['user']);
             unset($_SESSION['password']);            
         }
 	}
@@ -37,8 +37,8 @@ function checkpermission(){
         return true;        // ai cũng vào trang chủ được
 
 
-    if (isset($_SESSION['account']) && $_SESSION['account']) {
-        $mng = $process_account->getMngLevel($_SESSION['account']);
+    if (isset($_SESSION['user']) && $_SESSION['user']) {
+        $mng = $process_account->getMngLevel($_SESSION['user']);
 
         // manager có toàn quyền
         if(isset($mng) && $mng)
@@ -48,7 +48,7 @@ function checkpermission(){
             return false;
         }
 
-        $links = $permission->readLinkOfUser($process_account->getID($_SESSION['account'])); 
+        $links = $permission->readLinkOfUser($process_account->getID($_SESSION['user'])); 
 
         foreach ($links as $link){           
             if($link->link == $curlink)
